@@ -72,6 +72,26 @@ fi
 echo "Installing dependencies..."
 pip install Wand PyWavelets
 
+# --- File Browser Setup ---
+if ! command -v filebrowser &> /dev/null; then
+    echo "Installing File Browser..."
+    curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
+fi
+
+# Setup File Browser Database if it doesn't exist
+FB_DB="/workspace/filebrowser.db"
+if [ ! -f "$FB_DB" ]; then
+    echo "Initializing File Browser database..."
+    filebrowser config init -d "$FB_DB"
+    filebrowser config set -d "$FB_DB" --address 0.0.0.0 --port 8080 --root /workspace
+    # Set default login to admin / admin (Change this in the UI later!)
+    filebrowser users add admin admin --perm.admin -d "$FB_DB"
+fi
+
+# Start File Browser in the background
+echo "Starting File Browser on port 8080..."
+filebrowser -d "$FB_DB" -p 8080 -a 0.0.0.0 &
+
 echo "Starting ComfyUI..."
 cd /workspace/ComfyUI
 python main.py --listen --port 8188
