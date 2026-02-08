@@ -26,4 +26,4 @@ jobs:
           context: .
           push: true
           # REPLACE 'yourusername' BELOW WITH YOUR ACTUAL USERNAME
-          tags: yourusername/comfyui-autoupdate:latest
+          tags: arcyspark/comfyui-latest_imagemagick7:v1
