@@ -23,7 +23,7 @@ RUN wget https://imagemagick.org/archive/binaries/magick && \
 RUN pip install --no-cache-dir \
     Wand \
     PyWavelets \
-    comfyui-cli
+    comfy-cli
 
 # 4. Add the Start Script
 COPY start.sh /start.sh
