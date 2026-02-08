@@ -18,9 +18,9 @@ RUN wget https://imagemagick.org/archive/binaries/magick && \
     rm magick
 
 # 3. Pre-install Python Dependencies
-# We install these globally so they are cached and fast
+# We only install the MISSING tools.
+# PyTorch is already baked into the base image.
 RUN pip install --no-cache-dir \
-    torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
     Wand \
     PyWavelets \
     comfyui-cli
