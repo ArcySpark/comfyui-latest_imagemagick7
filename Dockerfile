@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libfuse2 \
     wget \
     git \
+    curl \
     libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
